@@ -1,11 +1,7 @@
-# A LaTeX resume template
+# CV
+This repository contains my latest CV.
 
-`resume.cls` is a document class that adds name and address information to the
-head of the document and provides resume section and subsection environments
-(`rSection` and `rSubsection`).  The address separator format, the
-`rSubsection` heading format, and the skip sizes defined in `resume.cls` can be
-customized.
+[![Preview of CV](preview.png "Preview of CV")](resume.pdf)
 
-### License
-
-Please see LICENSE file.
+### Credits
+This is a fork of a [fantastic LaTeX template](https://github.com/treyhunner/resume) by [Trey Hunner](https://github.com/treyhunner).

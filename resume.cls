@@ -16,12 +16,18 @@
 
 \LoadClass[11pt,letterpaper]{article}
 
-\usepackage[parfill]{parskip}       % Do not indent paragraphs
-\usepackage{array}                  % required for boldface tabular columns
-\usepackage{ifthen}
+\RequirePackage[parfill]{parskip}       % Do not indent paragraphs
+\RequirePackage{array}                  % required for boldface tabular columns
+\RequirePackage{ifthen}
 
 \nofiles                            % .aux files are not needed for resumes
-\pagestyle{empty}                   % resumes do not need page numbers
+
+\RequirePackage[left=0.75in,top=0.4in,right=0.75in,bottom=2cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BETTER FONTS
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADINGS: Commands for printing name and address
@@ -31,7 +37,7 @@
 
 \def \addressSep {$\diamond$}         % Set default address seperator
 
-% One or two address lines can be specified 
+% One or two address lines can be specified
 \let \@addressone \relax
 \let \@addresstwo \relax
 
@@ -47,8 +53,8 @@
 % \printaddress is used to style an address line (given as input)
 \def \printaddress #1{
   \begingroup
-    \def \\ {\addressSep\ }
-    \centerline{#1}
+  \def \\ {\addressSep\ }
+  \centerline{#1}
   \endgroup
   \par
   \addressskip
@@ -57,11 +63,30 @@
 % \printname is used to print the name as a page header
 \def \printname {
   \begingroup
-    \centerline{\textbf{\MakeUppercase{\namesize\@name}}}
+  \centerline{\textbf{\MakeUppercase{\namesize\@name}}}
   \endgroup
   \par
   \nameskip
 }
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HEADERS AND FOOTERS
+
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\renewcommand{\footrulewidth}{0.4pt} % Adds a line above the footer
+
+% Setting the footer
+% \lfoot{\includegraphics[width=1cm]{logo.png}}
+\cfoot{\footnotesize Bytelope AB is dedicated to providing expert software development consulting, tailored to meet unique client needs.}
+\rfoot{\thepage}
+
+\renewcommand{\headrulewidth}{0pt} % remove the header line
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DOCUMENT: Create the head of the document
@@ -86,26 +111,26 @@
   \begin{list}{}{
     \setlength{\leftmargin}{1.5em}
   }
-  \item[]
-}{
+    \item[]
+    }{
   \end{list}
 }
 
 % Used to format job listing
 \newenvironment{rSubsection}[4]{
-  %%%%%%%%%%%%%%%%%%%%%% Default Layout: %%%%%%%%%%%%%%%%%%%%%%%%
-  %%    Employer (bold)                     Dates (regular)    %%
-  %%    Title (emphasis)                Location (emphasis)    %%
-  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% Default Layout: %%%%%%%%%%%%%%%%%%%%%%%%
+%%    Employer (bold)                     Dates (regular)    %%
+%%    Title (emphasis)                Location (emphasis)    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \textbf{#1}                 \hfill                  {    #2}% Stop a space
   \ifthenelse{\equal{#3}{}}{}{
-  \\
-  \emph{#3}                \hfill                  \emph{#4}% Stop a space
+    \\
+    \emph{#3}                \hfill                  \emph{#4}% Stop a space
   }\smallskip
-  % \cdot used for bullets, items non-indented
+% \cdot used for bullets, items non-indented
   \begin{list}{$\cdot$}{\leftmargin=0em}
-  \itemsep -0.5em \vspace{-0.5em}
-}{
+    \itemsep -0.5em \vspace{-0.5em}
+    }{
   \end{list}
   \vspace{0.5em}
 }
