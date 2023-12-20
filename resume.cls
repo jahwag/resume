@@ -19,6 +19,7 @@
 \RequirePackage[parfill]{parskip}       % Do not indent paragraphs
 \RequirePackage{array}                  % required for boldface tabular columns
 \RequirePackage{ifthen}
+\RequirePackage{graphics}
 
 \nofiles                            % .aux files are not needed for resumes
 
@@ -28,6 +29,9 @@
 % BETTER FONTS
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage{textcomp}
+\usepackage{lmodern}
+\renewcommand*\familydefault{\sfdefault}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADINGS: Commands for printing name and address
@@ -72,21 +76,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADERS AND FOOTERS
 
-\usepackage{graphicx}
-\usepackage{fancyhdr}
+\newif\ifshowfooter
+\showfootertrue % Show footer
 
-\pagestyle{fancy}
-\fancyhf{} % clear all header and footer fields
-\renewcommand{\footrulewidth}{0.4pt} % Adds a line above the footer
+\ifshowfooter
+  \usepackage{graphicx}
+  \usepackage{fancyhdr}
 
-% Setting the footer
-% \lfoot{\includegraphics[width=1cm]{logo.png}}
-\cfoot{\footnotesize Bytelope AB is dedicated to providing expert software development consulting, tailored to meet unique client needs.}
-\rfoot{\thepage}
+  \pagestyle{fancy}
+  \fancyhf{} % clear all header and footer fields
+  \renewcommand{\footrulewidth}{0.4pt} % Adds a line above the footer
 
-\renewcommand{\headrulewidth}{0pt} % remove the header line
+  % Setting the footer
+  % \lfoot{\includegraphics[width=1cm]{logo.png}}
+  \cfoot{\footnotesize Bytelope AB is dedicated to providing expert software development consulting, tailored to meet unique client needs.}
+  \rfoot{\thepage}
 
-
+  \renewcommand{\headrulewidth}{0pt} % remove the header line
+\fi
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % DOCUMENT: Create the head of the document
@@ -140,3 +147,11 @@
 \def\addressskip{\smallskip}
 \def\sectionskip{\bigskip}
 \def\sectionlineskip{\medskip}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Bullets
+\usepackage{enumitem}
+
+\newcommand{\techItem}{\item[$*$]}
+
+\newcommand{\bItem}{\item[-]}
