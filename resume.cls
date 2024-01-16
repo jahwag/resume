@@ -77,7 +77,7 @@
 % HEADERS AND FOOTERS
 
 \newif\ifshowfooter
-\showfootertrue % Show footer
+\showfooterfalse% Show footer
 
 \ifshowfooter
   \usepackage{graphicx}
