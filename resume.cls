@@ -27,10 +27,14 @@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BETTER FONTS
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{textcomp}
-\usepackage{lmodern}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{textcomp}
+\RequirePackage{lmodern}
+\RequirePackage{multicol}
+\RequirePackage{tikz}
+
+\RequirePackage{needspace}
 \renewcommand*\familydefault{\sfdefault}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -105,7 +109,6 @@
   \@ifundefined{@addresstwo}{}{     % Print the second address if specified
     \printaddress{\@addresstwo}}
 }
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTIONS: Create section headings
 
@@ -139,7 +142,7 @@
     \itemsep -0.5em \vspace{-0.5em}
     }{
   \end{list}
-  \vspace{0.5em}
+  \hspace{2em}
 }
 
 \def\namesize{\huge}
@@ -148,10 +151,32 @@
 \def\sectionskip{\bigskip}
 \def\sectionlineskip{\medskip}
 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Bullets
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \usepackage{enumitem}
 
 \newcommand{\techItem}{\item[$*$]}
-
 \newcommand{\bItem}{\item[-]}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Multiple Columns
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\setlist[itemize]{noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt, left=0pt, labelsep=0.5em, labelwidth=0.5em, leftmargin=0.0em}
+
+
+
+% Save the original multicols* environment definition
+\newcommand{\oldbeginmulticols}{\multicols}
+\newcommand{\oldendmulticols}{\endmulticols}
+
+% Redefine the multicols* environment
+\renewenvironment{multicols*}[1][2]%
+{\vspace{-1em}\begin{multicols}{#1}}%
+{\end{multicols}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Ensure space before subsection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\ensurespace}[1]{\needspace{#1\baselineskip}}
