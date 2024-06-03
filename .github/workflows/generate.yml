@@ -42,7 +42,7 @@ jobs:
           response = client.chat.completions.create(
               model='gpt-3.5-turbo',
               messages=[
-                  {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
+                  {'role': 'system', 'content': 'You are a translator. Translate only the main body text of the LaTeX document to Swedish. Ignore any LaTeX commands or formatting'},
                   {'role': 'user', 'content': english_text}
               ]
           )
