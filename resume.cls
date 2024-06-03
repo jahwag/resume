@@ -17,9 +17,7 @@
 \LoadClass[11pt,letterpaper]{article}
 
 \RequirePackage[parfill]{parskip}       % Do not indent paragraphs
-\RequirePackage{array}                  % required for boldface tabular columns
 \RequirePackage{ifthen}
-\RequirePackage{graphics}
 
 \nofiles                            % .aux files are not needed for resumes
 
@@ -31,8 +29,6 @@
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{textcomp}
 \RequirePackage{lmodern}
-\RequirePackage{multicol}
-\RequirePackage{tikz}
 
 \RequirePackage{needspace}
 \renewcommand*\familydefault{\sfdefault}
@@ -92,7 +88,6 @@
   \renewcommand{\footrulewidth}{0.4pt} % Adds a line above the footer
 
   % Setting the footer
-  % \lfoot{\includegraphics[width=1cm]{logo.png}}
   \cfoot{\footnotesize Bytelope AB is dedicated to providing expert software development consulting, tailored to meet unique client needs.}
   \rfoot{\thepage}
 
@@ -164,17 +159,6 @@
 % Multiple Columns
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \setlist[itemize]{noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt, left=0pt, labelsep=0.5em, labelwidth=0.5em, leftmargin=0.0em}
-
-
-
-% Save the original multicols* environment definition
-\newcommand{\oldbeginmulticols}{\multicols}
-\newcommand{\oldendmulticols}{\endmulticols}
-
-% Redefine the multicols* environment
-\renewenvironment{multicols*}[1][2]%
-{\vspace{-1em}\begin{multicols}{#1}}%
-{\end{multicols}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ensure space before subsection
