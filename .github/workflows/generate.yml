@@ -3,7 +3,7 @@ name: Generate and Translate PDFs
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
 
 jobs:
