@@ -36,26 +36,26 @@ jobs:
       run: |
         pip install openai
         python -c "
-          import openai
-          import os
-          
-          openai.api_key = os.getenv('OPENAI_API_KEY')
-          
-          with open('resume.tex', 'r') as file:
-              english_text = file.read()
-          
-          response = openai.ChatCompletion.create(
-              model='gpt-3.5-turbo',
-              messages=[
-                  {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
-                  {'role': 'user', 'content': english_text}
-              ]
-          )
-          
-          swedish_text = response['choices'][0]['message']['content'].strip()
-          
-          with open('resume-sve.tex', 'w') as file:
-              file.write(swedish_text)
+        import openai
+        import os
+        
+        openai.api_key = os.getenv('OPENAI_API_KEY')
+        
+        with open('resume.tex', 'r') as file:
+            english_text = file.read()
+        
+        response = openai.ChatCompletion.create(
+            model='gpt-3.5-turbo',
+            messages=[
+                {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
+                {'role': 'user', 'content': english_text}
+            ]
+        )
+        
+        swedish_text = response['choices'][0]['message']['content'].strip()
+        
+        with open('resume-sve.tex', 'w') as file:
+            file.write(swedish_text)
         "
 
     - name: Compile LaTeX to PDF (Swedish)
