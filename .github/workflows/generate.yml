@@ -23,6 +23,9 @@ jobs:
           texlive-latex-recommended \
           texlive-latex-extra
 
+    - name: Create output directory
+      run: mkdir -p output
+
     - name: Compile LaTeX to PDF (English)
       run: |
         pdflatex -interaction=nonstopmode -output-directory=output resume.tex
