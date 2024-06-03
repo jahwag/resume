@@ -32,7 +32,8 @@ jobs:
         mv output/resume.pdf output/resume-eng.pdf
 
     - name: Translate .tex file to Swedish
-      id: translate
+      env:
+        OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
       run: |
         pip install openai
         python -c "
