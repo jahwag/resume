@@ -28,45 +28,7 @@ jobs:
       - name: Translate .tex file to Swedish
         env:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        run: |
-          python3 -c "
-          import openai
-          import os
-          
-          def translate_chunk(chunk, client):
-              response = client.chat.completions.create(
-                  model='gpt-3.5-turbo',
-                  messages=[
-                      {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
-                      {'role': 'user', 'content': chunk}
-                  ]
-              )
-              return response.choices[0].message.content.strip()
-          
-          def chunk_text(text, chunk_size=2048):
-              chunks = []
-              while len(text) > chunk_size:
-                  pos = text.rfind('\n', 0, chunk_size)
-                  if pos == -1:
-                      pos = chunk_size
-                  chunks.append(text[:pos])
-                  text = text[pos:]
-              chunks.append(text)
-              return chunks
-          
-          api_key = os.getenv('OPENAI_API_KEY')
-          client = OpenAI(api_key=api_key)
-          
-          with open('resume.tex', 'r') as file:
-              english_text = file.read()
-          
-          chunks = chunk_text(english_text)
-          translated_chunks = [translate_chunk(chunk, client) for chunk in chunks]
-          swedish_text = '\n'.join(translated_chunks)
-          
-          with open('resume-sve.tex', 'w') as file:
-              file.write(swedish_text)
-          "
+        run: python3 scripts/translate_resume.py
 
       - name: Print resume-sve.tex for debugging
         run: cat resume-sve.tex
@@ -76,9 +38,15 @@ jobs:
           pdflatex -interaction=nonstopmode -output-directory=output resume-sve.tex
           mv output/resume-sve.pdf output/resume-sve.pdf
 
-      - name: Upload PDFs
-        uses: actions/upload-artifact@v2
-        with:
-          name: generated-pdfs
-          path: output/*.pdf
-
+      - name: Upload PDFs to GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git clone --depth 1 --branch gh-pages https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }} gh-pages
+          cp output/*.pdf gh-pages/
+          cd gh-pages
+          git add .
+          git commit -m "Update generated PDFs"
+          git push
