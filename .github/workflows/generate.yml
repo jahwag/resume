@@ -30,8 +30,29 @@ jobs:
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         run: |
           python3 -c "
-          from openai import OpenAI
+          import openai
           import os
+          
+          def translate_chunk(chunk, client):
+              response = client.chat.completions.create(
+                  model='gpt-3.5-turbo',
+                  messages=[
+                      {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
+                      {'role': 'user', 'content': chunk}
+                  ]
+              )
+              return response.choices[0].message.content.strip()
+          
+          def chunk_text(text, chunk_size=2048):
+              chunks = []
+              while len(text) > chunk_size:
+                  pos = text.rfind('\n', 0, chunk_size)
+                  if pos == -1:
+                      pos = chunk_size
+                  chunks.append(text[:pos])
+                  text = text[pos:]
+              chunks.append(text)
+              return chunks
           
           api_key = os.getenv('OPENAI_API_KEY')
           client = OpenAI(api_key=api_key)
@@ -39,15 +60,9 @@ jobs:
           with open('resume.tex', 'r') as file:
               english_text = file.read()
           
-          response = client.chat.completions.create(
-              model='gpt-3.5-turbo',
-              messages=[
-                  {'role': 'system', 'content': 'You are a translator. Translate only the main body text of the LaTeX document to Swedish. Ignore any LaTeX commands or formatting'},
-                  {'role': 'user', 'content': english_text}
-              ]
-          )
-          
-          swedish_text = response.choices[0].message.content.strip()
+          chunks = chunk_text(english_text)
+          translated_chunks = [translate_chunk(chunk, client) for chunk in chunks]
+          swedish_text = '\n'.join(translated_chunks)
           
           with open('resume-sve.tex', 'w') as file:
               file.write(swedish_text)
