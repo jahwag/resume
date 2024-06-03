@@ -1,0 +1,67 @@
+name: Generate and Translate PDFs
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+
+jobs:
+  build-and-translate:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up LaTeX
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y \
+          texlive-latex-base \
+          texlive-fonts-recommended \
+          texlive-latex-recommended \
+          texlive-latex-extra
+
+    - name: Compile LaTeX to PDF (English)
+      run: |
+        pdflatex -interaction=nonstopmode -output-directory=output resume.tex
+        mv output/resume.pdf output/resume-eng.pdf
+
+    - name: Translate .tex file to Swedish
+      id: translate
+      run: |
+        pip install openai
+        python -c "
+          import openai
+          import os
+          
+          openai.api_key = os.getenv('OPENAI_API_KEY')
+          
+          with open('resume.tex', 'r') as file:
+              english_text = file.read()
+          
+          response = openai.ChatCompletion.create(
+              model='gpt-3.5-turbo',
+              messages=[
+                  {'role': 'system', 'content': 'You are a translator. Translate the following LaTeX content to Swedish.'},
+                  {'role': 'user', 'content': english_text}
+              ]
+          )
+          
+          swedish_text = response['choices'][0]['message']['content'].strip()
+          
+          with open('resume-sve.tex', 'w') as file:
+              file.write(swedish_text)
+        "
+
+    - name: Compile LaTeX to PDF (Swedish)
+      run: |
+        pdflatex -interaction=nonstopmode -output-directory=output resume-sve.tex
+        mv output/resume-sve.pdf output/resume-sve.pdf
+
+    - name: Upload PDFs
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-pdfs
+        path: output/*.pdf
