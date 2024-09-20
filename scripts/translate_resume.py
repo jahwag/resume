@@ -3,7 +3,7 @@ import os
 
 def translate_text(text, client):
     response = client.chat.completions.create(
-        model='gpt-4o',
+        model='gpt-4o-mini',
         messages=[
             {'role': 'system', 'content': r'You are a translator. Translate the following LaTeX content to Swedish. Only translate the text content, do not translate commands or formatting. Remember that the character & has to be escaped as \&.'},
             {'role': 'user', 'content': text}
