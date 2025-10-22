@@ -18,10 +18,24 @@
 
 \RequirePackage[parfill]{parskip}       % Do not indent paragraphs
 \RequirePackage{ifthen}
+\RequirePackage{lineno}                % Line numbers for IDE-style look
 
 \nofiles                            % .aux files are not needed for resumes
 
 \RequirePackage[left=0.75in,top=0.4in,right=0.75in,bottom=2cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IDE-STYLE LINE NUMBERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xcolor}
+
+% Configure line numbers to look like an IDE
+\renewcommand\linenumberfont{\normalfont\scriptsize\ttfamily\color{gray}}
+\setlength\linenumbersep{10pt}
+\renewcommand\thelinenumber{\arabic{linenumber}}
+
+% Enable line numbers
+\linenumbers
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BETTER FONTS
@@ -137,28 +151,6 @@
     \itemsep -0.5em \vspace{-0.5em}
     }{
   \end{list}
-  \hspace{2em}
-}
-
-% Used to format client work done through consulting companies (indented)
-\newenvironment{rClientSubsection}[4]{
-%%%%%%%%%%%%%%%%%%%%%% Default Layout: %%%%%%%%%%%%%%%%%%%%%%%%
-%%    Client (bold)                      Dates (regular)    %%
-%%    Title (emphasis)                Location (emphasis)    %%
-%%    Indented to show it's under a consulting company      %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \hspace{1.5em}\begin{minipage}{\dimexpr\textwidth-1.5em\relax}
-  \textbf{#1}                 \hfill                  {    #2}% Stop a space
-  \ifthenelse{\equal{#3}{}}{}{
-    \\
-    \emph{#3}                \hfill                  \emph{#4}% Stop a space
-  }\smallskip
-% \cdot used for bullets, items non-indented
-  \begin{list}{$\cdot$}{\leftmargin=0em}
-    \itemsep -0.5em \vspace{-0.5em}
-    }{
-  \end{list}
-  \end{minipage}
   \hspace{2em}
 }
 
