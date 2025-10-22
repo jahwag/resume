@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-translate:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 10
     container:
       image: jahwag/latex-openai:latest
 
@@ -18,7 +18,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Install required LaTeX packages
-        run: tlmgr install lineno xcolor
+        run: |
+          tlmgr update --self --all
+          tlmgr install lineno xcolor
 
       - name: Create output directory
         run: mkdir -p output
