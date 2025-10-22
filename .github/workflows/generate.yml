@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install required LaTeX packages
+        run: tlmgr install lineno xcolor
+
       - name: Create output directory
         run: mkdir -p output
 
