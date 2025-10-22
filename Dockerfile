@@ -9,7 +9,7 @@ RUN apk update && \
 RUN pip3 install --break-system-packages openai
 
 # Install additional LaTeX packages
-RUN tlmgr install parskip etoolbox needspace enumitem
+RUN tlmgr install parskip etoolbox needspace enumitem lineno xcolor
 
 # Set the working directory
 WORKDIR /workspace
