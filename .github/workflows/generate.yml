@@ -17,10 +17,15 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set TeXLive repository and install packages
+      - name: Upgrade TeX Live (non-interactive)
         run: |
+          wget -q https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
+          echo "" | sh update-tlmgr-latest.sh --update 2>&1 || true
           tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
-          tlmgr update --self --all --verify-repo=none
+
+      - name: Update and install packages
+        run: |
+          tlmgr update --self --all --verify-repo=none || true
           tlmgr install --verify-repo=none lineno xcolor
 
       - name: Create output directory
