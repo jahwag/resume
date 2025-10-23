@@ -39,6 +39,7 @@ jobs:
           mv output/resume-sve.pdf output/resume-sve.pdf
 
       - name: Upload PDFs to GitHub Pages
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
