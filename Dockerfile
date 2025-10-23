@@ -1,5 +1,5 @@
 # Use the official LaTeX image from the Docker Hub
-FROM kjarosh/latex:2024.2-basic
+FROM kjarosh/latex:2025.1-basic
 
 # Update package list and install Python and pip
 RUN apk update && \
