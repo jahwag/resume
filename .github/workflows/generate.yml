@@ -18,10 +18,10 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Set TeXLive 2024 frozen repository
-        run: tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final
+        run: tlmgr --verify-repo=none option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final
 
       - name: Install required LaTeX packages
-        run: tlmgr install lineno xcolor
+        run: tlmgr --verify-repo=none install lineno xcolor
 
       - name: Create output directory
         run: mkdir -p output
