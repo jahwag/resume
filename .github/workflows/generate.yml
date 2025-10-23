@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-translate:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    timeout-minutes: 10
     container:
       image: jahwag/latex-openai:latest
 
@@ -19,6 +19,12 @@ jobs:
 
       - name: Install GPG for repository verification
         run: apt-get update && apt-get install -y gnupg
+
+      - name: Set TeXLive 2024 frozen repository
+        run: tlmgr --verify-repo=none option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final
+
+      - name: Install required LaTeX packages
+        run: tlmgr --verify-repo=none install lineno xcolor
 
       - name: Create output directory
         run: mkdir -p output
