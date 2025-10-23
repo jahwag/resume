@@ -17,16 +17,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Upgrade TeX Live (non-interactive)
-        run: |
-          wget -q https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-          echo "" | sh update-tlmgr-latest.sh --update 2>&1 || true
-          tlmgr option repository http://mirror.ctan.org/systems/texlive/tlnet
+      - name: Set reliable CTAN mirror
+        run: tlmgr option repository http://ctan.math.utah.edu/ctan/tex-archive/systems/texlive/tlnet
 
-      - name: Update and install packages
-        run: |
-          tlmgr update --self --all --verify-repo=none || true
-          tlmgr install --verify-repo=none lineno xcolor
+      - name: Install packages with GPG disabled
+        run: tlmgr install --verify-repo=none lineno xcolor
 
       - name: Create output directory
         run: mkdir -p output
