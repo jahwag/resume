@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install GPG for repository verification
+        run: apt-get update && apt-get install -y gnupg
+
       - name: Create output directory
         run: mkdir -p output
 
