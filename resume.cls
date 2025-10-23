@@ -18,10 +18,24 @@
 
 \RequirePackage[parfill]{parskip}       % Do not indent paragraphs
 \RequirePackage{ifthen}
+\RequirePackage{lineno}                % Line numbers for IDE-style look
 
 \nofiles                            % .aux files are not needed for resumes
 
 \RequirePackage[left=0.75in,top=0.4in,right=0.75in,bottom=2cm]{geometry}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% IDE-STYLE LINE NUMBERS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{xcolor}
+
+% Configure line numbers to look like an IDE
+\renewcommand\linenumberfont{\normalfont\scriptsize\ttfamily\color{gray}}
+\setlength\linenumbersep{10pt}
+\renewcommand\thelinenumber{\arabic{linenumber}}
+
+% Enable line numbers
+\linenumbers
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BETTER FONTS

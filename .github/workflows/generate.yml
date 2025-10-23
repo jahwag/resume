@@ -7,11 +7,38 @@ on:
   pull_request:
 
 jobs:
-  build-and-translate:
+  build-docker:
     runs-on: ubuntu-latest
-    timeout-minutes: 3
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Log in to GitHub Container Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          push: true
+          tags: ghcr.io/${{ github.repository_owner }}/latex-openai:latest
+
+  build-and-translate:
+    needs: build-docker
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
     container:
-      image: jahwag/latex-openai:latest
+      image: ghcr.io/${{ github.repository_owner }}/latex-openai:latest
+      credentials:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
       - name: Checkout repository
