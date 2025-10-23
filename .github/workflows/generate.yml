@@ -17,6 +17,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Install GPG for repository verification
+        run: apk add --no-cache gnupg
+
       - name: Set TeXLive 2024 frozen repository
         run: tlmgr --verify-repo=none option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final
 
