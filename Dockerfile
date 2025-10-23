@@ -9,7 +9,11 @@ RUN apk update && \
 RUN pip3 install --break-system-packages openai
 
 # Install additional LaTeX packages
-RUN tlmgr install parskip etoolbox needspace enumitem lineno xcolor
+# Update tlmgr itself first and then install packages with verification
+RUN tlmgr update --self || true && \
+    tlmgr install --verify-repo=none parskip etoolbox needspace enumitem lineno xcolor && \
+    echo "Verifying package installation..." && \
+    kpsewhich etoolbox.sty || (echo "ERROR: etoolbox.sty not found after installation" && exit 1)
 
 # Set the working directory
 WORKDIR /workspace
