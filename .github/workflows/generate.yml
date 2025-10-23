@@ -17,16 +17,8 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Upgrade TeX Live using update-tlmgr-latest
-        run: |
-          wget https://mirror.ctan.org/systems/texlive/tlnet/update-tlmgr-latest.sh
-          sh update-tlmgr-latest.sh --update
-
-      - name: Set TeXLive CTAN mirror
-        run: tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet
-
-      - name: Update TeXLive packages
-        run: tlmgr update --self --all
+      - name: Set TeXLive 2024 frozen repository
+        run: tlmgr option repository https://ftp.math.utah.edu/pub/tex/historic/systems/texlive/2024/tlnet-final
 
       - name: Install required LaTeX packages
         run: tlmgr install lineno xcolor
