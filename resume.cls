@@ -45,6 +45,7 @@
 \RequirePackage{lmodern}
 
 \RequirePackage{needspace}
+\RequirePackage{tikz}
 \renewcommand*\familydefault{\sfdefault}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -152,6 +153,29 @@
     }{
   \end{list}
   \hspace{2em}
+}
+
+% Used to format client job listing with vertical line
+\newenvironment{rClientSubsection}[4]{
+%%%%%%%%%%%%%%%%%%%%%% Client Layout with vertical line %%%%%%%
+%%    Employer (bold)                     Dates (regular)    %%
+%%    Title (emphasis)                Location (emphasis)    %%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  \noindent
+  {\color{gray}\rule{1pt}{0.8\baselineskip}}\hspace{0.5em}%
+  \begin{minipage}[t]{\dimexpr\textwidth-1.5em\relax}
+  \textbf{#1}                 \hfill                  {    #2}% Stop a space
+  \ifthenelse{\equal{#3}{}}{}{
+    \\
+    \emph{#3}                \hfill                  \emph{#4}% Stop a space
+  }\smallskip
+% \cdot used for bullets, indented to avoid overlap with line numbers
+  \begin{list}{$\cdot$}{\leftmargin=1.5em}
+    \itemsep -0.5em \vspace{-0.5em}
+    }{
+  \end{list}
+  \end{minipage}
+  \par
 }
 
 \def\namesize{\huge}
