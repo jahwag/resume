@@ -177,7 +177,7 @@
   }\smallskip
 % \cdot used for bullets
   \begin{list}{$\cdot$}{\leftmargin=1.5em}
-    \itemsep -0.5em \vspace{-0.5em}
+    \itemsep 0.1em \vspace{0em}
     }{
   \end{list}
   \end{minipage}%
