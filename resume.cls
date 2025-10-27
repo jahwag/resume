@@ -35,7 +35,7 @@
 \renewcommand\thelinenumber{\arabic{linenumber}}
 
 % Enable line numbers
-\linenumbers
+% \linenumbers  % Disabled - line numbers removed for cleaner appearance
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % BETTER FONTS
@@ -170,7 +170,7 @@
   \leavevmode\tikz[remember picture, overlay] \coordinate (subsec-start-\the\value{clientsubsec});%
   \noindent\hspace{1.5em}%
   \begin{minipage}[t]{\dimexpr\textwidth-1.5em\relax}
-  \textbf{#1}                 \hfill                  {    #2}% Stop a space
+  {\small\textit{Assignment:}} \textbf{#1}                 \hfill                  {    #2}% Stop a space
   \ifthenelse{\equal{#3}{}}{}{
     \\
     \emph{#3}                \hfill                  \emph{#4}% Stop a space
@@ -178,7 +178,6 @@
 % \cdot used for bullets
   \begin{list}{$\cdot$}{\leftmargin=1.5em}
     \itemsep -0.5em \vspace{-0.5em}
-    \internallinenumbers
     }{
   \end{list}
   \end{minipage}%
