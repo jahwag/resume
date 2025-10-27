@@ -51,6 +51,11 @@
 
 % Counter for client subsections
 \newcounter{clientsubsec}
+% Counter for client groups
+\newcounter{clientgroup}
+% Flag to track if we're in a client group
+\newif\ifinclientgroup
+\inclientgroupfalse
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADINGS: Commands for printing name and address
@@ -140,13 +145,36 @@
   \end{list}
 }
 
+% Commands to start and end a client group
+\newcommand{\startClientGroup}{%
+  \inclientgrouptrue%
+  \stepcounter{clientgroup}%
+}
+
+\newcommand{\finishClientGroup}{%
+  % Draw the vertical line for the entire group
+  \tikz[remember picture, overlay] {
+    \draw[gray, line width=1.5pt]
+      ([xshift=-0.5em]group-start-\the\value{clientgroup})
+      --
+      ([xshift=-0.5em]group-end-\the\value{clientgroup});
+  }%
+  \inclientgroupfalse%
+  \par
+}
+
 % Used to format job listing
 \newenvironment{rSubsection}[4]{
 %%%%%%%%%%%%%%%%%%%%%% Default Layout: %%%%%%%%%%%%%%%%%%%%%%%%
 %%    Employer (bold)                     Dates (regular)    %%
 %%    Title (emphasis)                Location (emphasis)    %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \textbf{#1}                 \hfill                  {    #2}% Stop a space
+  \textbf{#1}%
+  \ifinclientgroup%
+    % Place start marker right after the employer name
+    \tikz[remember picture] \node[coordinate] (group-start-\the\value{clientgroup}) {};%
+  \fi%
+  \hfill{    #2}% Stop a space
   \ifthenelse{\equal{#3}{}}{}{
     \\
     \emph{#3}                \hfill                  \emph{#4}% Stop a space
@@ -166,11 +194,9 @@
 %%    Title (emphasis)                Location (emphasis)    %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   \stepcounter{clientsubsec}%
-  % Mark the start position for the vertical line
-  \leavevmode\tikz[remember picture, overlay] \coordinate (subsec-start-\the\value{clientsubsec});%
   \noindent\hspace{1.5em}%
   \begin{minipage}[t]{\dimexpr\textwidth-1.5em\relax}
-  {\small\textit{Assignment:}} \textbf{#1}                 \hfill                  {    #2}% Stop a space
+  {\small\textit{Client:}} \textit{#1}                 \hfill                  {    #2}% Stop a space
   \ifthenelse{\equal{#3}{}}{}{
     \\
     \emph{#3}                \hfill                  \emph{#4}% Stop a space
@@ -181,14 +207,10 @@
     }{
   \end{list}
   \end{minipage}%
-  % Mark the end position and draw the vertical line
-  \tikz[remember picture, overlay] {
-    \coordinate (subsec-end-\the\value{clientsubsec});
-    \draw[gray, line width=1pt]
-      ([xshift=0.75em, yshift=0.8ex]subsec-start-\the\value{clientsubsec})
-      --
-      ([xshift=0.75em, yshift=-0.5ex]subsec-end-\the\value{clientsubsec});
-  }%
+  % Mark the end position - place it AFTER the content
+  \ifinclientgroup%
+    \tikz[remember picture] \node[coordinate] (group-end-\the\value{clientgroup}) {};%
+  \fi%
   \par
 }
 
