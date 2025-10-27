@@ -46,7 +46,11 @@
 
 \RequirePackage{needspace}
 \RequirePackage{tikz}
+\usetikzlibrary{calc}
 \renewcommand*\familydefault{\sfdefault}
+
+% Counter for client subsections
+\newcounter{clientsubsec}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % HEADINGS: Commands for printing name and address
@@ -161,20 +165,31 @@
 %%    Employer (bold)                     Dates (regular)    %%
 %%    Title (emphasis)                Location (emphasis)    %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \noindent
-  {\color{gray}\rule{1pt}{0.8\baselineskip}}\hspace{0.5em}%
+  \stepcounter{clientsubsec}%
+  % Mark the start position for the vertical line
+  \leavevmode\tikz[remember picture, overlay] \coordinate (subsec-start-\the\value{clientsubsec});%
+  \noindent\hspace{1.5em}%
   \begin{minipage}[t]{\dimexpr\textwidth-1.5em\relax}
   \textbf{#1}                 \hfill                  {    #2}% Stop a space
   \ifthenelse{\equal{#3}{}}{}{
     \\
     \emph{#3}                \hfill                  \emph{#4}% Stop a space
   }\smallskip
-% \cdot used for bullets, indented to avoid overlap with line numbers
+% \cdot used for bullets
   \begin{list}{$\cdot$}{\leftmargin=1.5em}
     \itemsep -0.5em \vspace{-0.5em}
+    \internallinenumbers
     }{
   \end{list}
-  \end{minipage}
+  \end{minipage}%
+  % Mark the end position and draw the vertical line
+  \tikz[remember picture, overlay] {
+    \coordinate (subsec-end-\the\value{clientsubsec});
+    \draw[gray, line width=1pt]
+      ([xshift=0.75em, yshift=0.8ex]subsec-start-\the\value{clientsubsec})
+      --
+      ([xshift=0.75em, yshift=-0.5ex]subsec-end-\the\value{clientsubsec});
+  }%
   \par
 }
 
