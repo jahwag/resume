@@ -4,7 +4,7 @@
 
 Tjena Jacob,
 
-Tack för att du tänkte på mig! Det här låter som ett riktigt intressant uppdrag och jag ser direkt att min profil matchar väl. Den här typen av tekniskt ledarskap med arkitekturfokus är precis vad jag trivs med.
+Tack för att du tänkte på mig! Det här låter riktigt intressant - precis den typen av tekniskt ledarskap med arkitekturfokus som vi pratade om att jag trivs med.
 
 **Tillgänglighet:**
 - Kan starta omgående
