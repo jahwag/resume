@@ -15,7 +15,7 @@ Coaching och att lyfta teamet är något jag trivs med – har haft den rollen b
 - 12 månader + 12 månaders option fungerar utmärkt
 - On-site flera dagar i veckan i Stockholm är inga problem
 
-**Pris:** 1000 kr/h
+**Pris:** 1020 kr/h
 
 Presentera mig gärna för SJ!
 
