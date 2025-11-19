@@ -4,7 +4,7 @@
 
 Tjena Jacob,
 
-Tack för att du tänkte på mig! Det här låter riktigt intressant - precis den typen av tekniskt ledarskap med arkitekturfokus som vi pratade om att jag trivs med.
+Tack för att du tänkte på mig! Det här låter riktigt intressant, precis den typen av tekniskt ledarskap med arkitekturfokus som vi pratade om att jag trivs med.
 
 **Tillgänglighet:**
 - Kan starta omgående
