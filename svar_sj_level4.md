@@ -4,11 +4,7 @@
 
 Tjena Jacob,
 
-Tack för att du tänkte på mig! Det här låter som ett riktigt intressant uppdrag och jag ser direkt att min profil matchar väl.
-
-Mina senaste år har handlat mycket om just det här: Java/Spring Boot på arkitekturell nivå, API-design, mikrotjänster och tekniskt ledarskap. På Svensk Travsport ledde jag backend-teamet och API-utvecklingen för deras webbplattform med 100+ mikrotjänster i Kubernetes/GCP. Hos Kindred jobbade jag med reaktiva Spring Boot 3-tjänster och betalningsintegrationer i stor skala. Och på Ericsson drev jag mikrotjänstarkitekturen för deras 5G-plattform i Azure/Kubernetes.
-
-Coaching och att lyfta teamet är något jag trivs med – har haft den rollen både som Scrum Master och som teknisk lead på flera uppdrag.
+Tack för att du tänkte på mig! Det här låter som ett riktigt intressant uppdrag och jag ser direkt att min profil matchar väl. Den här typen av tekniskt ledarskap med arkitekturfokus är precis vad jag trivs med.
 
 **Tillgänglighet:**
 - Kan starta omgående
