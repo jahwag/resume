@@ -11,9 +11,10 @@ RUN pip3 install --break-system-packages openai
 # Install additional LaTeX packages
 # Update tlmgr itself first and then install packages with verification
 RUN tlmgr update --self || true && \
-    tlmgr install --verify-repo=none parskip etoolbox needspace enumitem lineno xcolor pgf && \
+    tlmgr install --verify-repo=none parskip etoolbox needspace enumitem lineno xcolor pgf inter greek-fontenc xkeyval fontaxes ly1 lastpage && \
     echo "Verifying package installation..." && \
-    kpsewhich etoolbox.sty || (echo "ERROR: etoolbox.sty not found after installation" && exit 1)
+    kpsewhich etoolbox.sty || (echo "ERROR: etoolbox.sty not found after installation" && exit 1) && \
+    kpsewhich inter.sty || (echo "ERROR: inter.sty not found after installation" && exit 1)
 
 # Set the working directory
 WORKDIR /workspace
