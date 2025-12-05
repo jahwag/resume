@@ -20,7 +20,7 @@
 \RequirePackage{ifthen}
 \RequirePackage{lineno}                % Line numbers for IDE-style look
 
-\nofiles                            % .aux files are not needed for resumes
+% Note: .aux files are needed for lastpage package to work correctly
 
 \RequirePackage[left=0.75in,top=0.4in,right=0.75in,bottom=2cm]{geometry}
 

@@ -49,7 +49,9 @@ jobs:
 
       - name: Compile LaTeX to PDF (English)
         run: |
-          pdflatex -interaction=nonstopmode -output-directory=output resume.tex
+          pdflatex -interaction=nonstopmode -output-directory=output resume.tex || true
+          pdflatex -interaction=nonstopmode -output-directory=output resume.tex || true
+          test -f output/resume.pdf || (echo "ERROR: PDF not generated" && exit 1)
           mv output/resume.pdf output/resume-eng.pdf
 
       - name: Translate .tex file to Swedish
@@ -62,7 +64,9 @@ jobs:
 
       - name: Compile LaTeX to PDF (Swedish)
         run: |
-          pdflatex -interaction=nonstopmode -output-directory=output resume-sve.tex
+          pdflatex -interaction=nonstopmode -output-directory=output resume-sve.tex || true
+          pdflatex -interaction=nonstopmode -output-directory=output resume-sve.tex || true
+          test -f output/resume-sve.pdf || (echo "ERROR: PDF not generated" && exit 1)
           mv output/resume-sve.pdf output/resume-sve.pdf
 
       - name: Upload PDFs to GitHub Pages
