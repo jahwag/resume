@@ -42,12 +42,11 @@
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 \RequirePackage{textcomp}
-\RequirePackage{lmodern}
+\RequirePackage[sfdefault]{inter}  % Modern Inter font
 
 \RequirePackage{needspace}
 \RequirePackage{tikz}
 \usetikzlibrary{calc}
-\renewcommand*\familydefault{\sfdefault}
 
 % Counter for client subsections
 \newcounter{clientsubsec}
@@ -58,16 +57,17 @@
 \inclientgroupfalse
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% HEADINGS: Commands for printing name and address
+% HEADINGS: Commands for printing name and address (modern two-column layout)
 
 \def \name#1{\def\@name{#1}}        % \name command can be used to set name
 \def \@name {}                      % Set \@name to empty by default
 
-\def \addressSep {$\diamond$}         % Set default address seperator
+\def \subtitle#1{\def\@subtitle{#1}}  % Role/company subtitle
+\let \@subtitle \relax
 
-% One or two address lines can be specified
-\let \@addressone \relax
-\let \@addresstwo \relax
+% Contact info for right column
+\let \@addressone \relax  % Physical address
+\let \@addresstwo \relax  % Contact details
 
 % \address command can be used to set first and second address (optional)
 \def \address #1{
@@ -81,19 +81,23 @@
 % \printaddress is used to style an address line (given as input)
 \def \printaddress #1{
   \begingroup
-  \def \\ {\addressSep\ }
-  \centerline{#1}
+  \def \\ {\quad}
+  #1
   \endgroup
-  \par
-  \addressskip
 }
 
-% \printname is used to print the name as a page header
+% \printname is used to print the name as a page header (centered layout)
 \def \printname {
   \begingroup
-  \centerline{\textbf{\MakeUppercase{\namesize\@name}}}
-  \endgroup
+  \centering
+  {\textbf{\MakeUppercase{\namesize\@name}}}%
+  \@ifundefined{@subtitle}{}{\\[2pt]{\large\@subtitle}}%
+  \par\vspace{4pt}
+  \@ifundefined{@addresstwo}{}{{\footnotesize\def\\{\quad$\cdot$\quad}\@addresstwo}}
   \par
+  \endgroup
+  \vspace{0.5em}
+  \hrule height 0.5pt
   \nameskip
 }
 
@@ -106,14 +110,15 @@
 \ifshowfooter
   \usepackage{graphicx}
   \usepackage{fancyhdr}
+  \usepackage{lastpage}
 
   \pagestyle{fancy}
   \fancyhf{} % clear all header and footer fields
   \renewcommand{\footrulewidth}{0.4pt} % Adds a line above the footer
 
   % Setting the footer
-  \cfoot{\footnotesize Bytelope AB is dedicated to providing expert software development consulting, tailored to meet unique client needs.}
-  \rfoot{\thepage}
+  \cfoot{\footnotesize \href{https://www.bytelope.com}{Bytelope AB}}
+  \rfoot{\footnotesize Page \thepage\ of \pageref{LastPage}}
 
   \renewcommand{\headrulewidth}{0pt} % remove the header line
 \fi
@@ -122,11 +127,7 @@
 % DOCUMENT: Create the head of the document
 
 \AtBeginDocument{                     % Begin document
-  \printname                        % Print the name specified with \name
-  \@ifundefined{@addressone}{}{     % Print the first address if specified
-    \printaddress{\@addressone}}
-  \@ifundefined{@addresstwo}{}{     % Print the second address if specified
-    \printaddress{\@addresstwo}}
+  \printname                        % Print name and contact in two-column layout
 }
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % SECTIONS: Create section headings
@@ -145,74 +146,94 @@
   \end{list}
 }
 
-% Commands to start and end a client group
-\newcommand{\startClientGroup}{%
-  \inclientgrouptrue%
-  \stepcounter{clientgroup}%
-}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% SEMANTIC POSITION ENVIRONMENTS
+% Domain-specific commands for consulting business structure
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\newcommand{\finishClientGroup}{%
-  % Draw the vertical line for the entire group
-  \tikz[remember picture, overlay] {
-    \draw[gray, line width=1.5pt]
-      ([xshift=-0.5em]group-start-\the\value{clientgroup})
-      --
-      ([xshift=-0.5em]group-end-\the\value{clientgroup});
+% Colors for visual hierarchy
+\definecolor{accentcolor}{HTML}{2c3e50}  % Dark blue accent
+\definecolor{employerline}{gray}{0.3}
+\definecolor{assignmentborder}{gray}{0.75}
+\definecolor{assignmenttag}{gray}{0.5}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% rEmployer - For any employer (direct or consulting company)
+% Use for: Bytelope AB, Combitech AB, Saab AB, Banky AB, etc.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{rEmployer}[4]{
+  \vspace{0.8em}
+  \noindent\textbf{\MakeUppercase{#1}}%
+  \hfill{#2}%
+  \ifthenelse{\equal{#3}{}}{}{%
+    \\
+    \emph{#3}\hfill\emph{#4}%
   }%
-  \inclientgroupfalse%
-  \par
+  \smallskip
+  \begin{list}{-}{\leftmargin=1.5em\itemsep=-0.3em}
+}{
+  \end{list}
+  \vspace{0.3em}
 }
 
-% Used to format job listing
-\newenvironment{rSubsection}[4]{
-%%%%%%%%%%%%%%%%%%%%%% Default Layout: %%%%%%%%%%%%%%%%%%%%%%%%
-%%    Employer (bold)                     Dates (regular)    %%
-%%    Title (emphasis)                Location (emphasis)    %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \textbf{#1}%
-  \ifinclientgroup%
-    % Place start marker right after the employer name
-    \tikz[remember picture] \node[coordinate] (group-start-\the\value{clientgroup}) {};%
-  \fi%
-  \hfill{    #2}% Stop a space
-  \ifthenelse{\equal{#3}{}}{}{
-    \\
-    \emph{#3}                \hfill                  \emph{#4}% Stop a space
-  }\smallskip
-% \cdot used for bullets, indented to avoid overlap with line numbers
-  \begin{list}{$\cdot$}{\leftmargin=1.5em}
-    \itemsep -0.5em \vspace{-0.5em}
-    }{
-  \end{list}
-  \hspace{2em}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% rAssignment - For client assignments under a consultancy
+% Use for: Client work via Bytelope, Combitech, etc.
+% Subtle left border style (like a blockquote) to show hierarchy
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newenvironment{rAssignment}[4]{
+  \vspace{0.1em}
+  \noindent\hspace{0.8em}%
+  \begin{tikzpicture}
+    \node[
+      inner sep=8pt,
+      text width=\dimexpr\linewidth-4.2em\relax,
+      anchor=north west
+    ] (box) \bgroup
+      \begin{minipage}[t]{\dimexpr\linewidth-4.2em-16pt\relax}
+        % Client name and dates
+        \textbf{#1}\hfill{#2}%
+        \ifthenelse{\equal{#3}{}}{}{%
+          \\
+          \emph{#3}\hfill\emph{#4}%
+        }%
+        \smallskip
+        \begin{list}{-}{\leftmargin=1.2em\itemsep=0.15em\topsep=0.2em}
+}{
+        \end{list}
+      \end{minipage}
+    \egroup;
+    % Left border with vertical "CLIENT" text
+    \draw[assignmentborder, line width=1pt] (box.north west) -- (box.south west);
+    \node[rotate=90, anchor=south, font=\scriptsize\color{assignmenttag}]
+      at ($(box.north west)!0.5!(box.south west) - (0.4em,0)$) {CLIENT};
+    % Dashed bottom separator for consecutive clients
+    \draw[assignmentborder, line width=0.5pt, dashed]
+      ($(box.south west) + (0,-0.3em)$) -- ($(box.south east) + (0,-0.3em)$);
+  \end{tikzpicture}
 }
 
-% Used to format client job listing with vertical line
-\newenvironment{rClientSubsection}[4]{
-%%%%%%%%%%%%%%%%%%%%%% Client Layout with vertical line %%%%%%%
-%%    Employer (bold)                     Dates (regular)    %%
-%%    Title (emphasis)                Location (emphasis)    %%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  \stepcounter{clientsubsec}%
-  \noindent\hspace{1.5em}%
-  \begin{minipage}[t]{\dimexpr\textwidth-1.5em\relax}
-  {\small\textit{Client:}} \textit{#1}                 \hfill                  {    #2}% Stop a space
-  \ifthenelse{\equal{#3}{}}{}{
-    \\
-    \emph{#3}                \hfill                  \emph{#4}% Stop a space
-  }\smallskip
-% \cdot used for bullets
-  \begin{list}{$\cdot$}{\leftmargin=1.5em}
-    \itemsep 0.1em \vspace{0em}
-    }{
-  \end{list}
-  \end{minipage}%
-  % Mark the end position - place it AFTER the content
-  \ifinclientgroup%
-    \tikz[remember picture] \node[coordinate] (group-end-\the\value{clientgroup}) {};%
-  \fi%
-  \par
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% BACKWARD COMPATIBILITY - Keep old commands working
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% rSubsection maps to rEmployer
+\newenvironment{rSubsection}[4]{%
+  \begin{rEmployer}{#1}{#2}{#3}{#4}%
+}{%
+  \end{rEmployer}%
 }
+
+% rClientSubsection maps to rAssignment
+\newenvironment{rClientSubsection}[4]{%
+  \begin{rAssignment}{#1}{#2}{#3}{#4}%
+}{%
+  \end{rAssignment}%
+}
+
+% Legacy group commands (no longer needed but kept for compatibility)
+\newcommand{\startClientGroup}{}
+\newcommand{\finishClientGroup}{}
 
 \def\namesize{\huge}
 \def\nameskip{\medskip}
@@ -228,6 +249,10 @@
 
 \newcommand{\techItem}{\item[$*$]}
 \newcommand{\bItem}{\item[-]}
+
+% Fine print for tech/infrastructure/methodology lines
+\definecolor{techgray}{gray}{0.35}
+\newcommand{\techLine}[2]{\item[-] {\small\color{techgray}\textbf{#1}: #2}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Multiple Columns

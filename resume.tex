@@ -1,220 +1,181 @@
 \documentclass{resume}
-\usepackage{hyperref}
+\usepackage[hidelinks]{hyperref}
 
 \name{Jahziah Wagner}
 
 \ifshowfooter
-\address{ Phone +46 (0)760-335 220 \\ Email jahziah@bytelope.com }
-\address{ \textbf{Bytelope AB} \\ Bennebolsgatan 14 \\ 163 50 Spånga, Stockholm }
+\address{Stockholm \\ \href{tel:+46760335220}{+46 (0)760-335 220} \\ \href{mailto:jahziah@bytelope.com}{jahziah@bytelope.com} \\ \href{https://www.linkedin.com/in/jahziahwagner/}{LinkedIn} \\ \href{https://github.com/jahwag}{GitHub}}
 \else
-\address{ Phone +46 (0)760-335 220 \\ Email jahziah.wagner@gmail.com }
-\address{ Bennebolsgatan 14 \\ 163 50 Spånga, Stockholm }
+\address{Stockholm \\ \href{tel:+46760335220}{+46 (0)760-335 220} \\ \href{mailto:jahziah.wagner@gmail.com}{jahziah.wagner@gmail.com} \\ \href{https://www.linkedin.com/in/jahziahwagner/}{LinkedIn} \\ \href{https://github.com/jahwag}{GitHub}}
 \fi
 
 \begin{document}
 
 % Professional Summary
+  \vspace{1.5em}
   \noindent
-  \linebreak
-  Software consultant and entrepreneur with 15 years of experience spanning technical leadership, strategic software architecture, and full-stack development. Founder of Bytelope AB, delivering strategic consulting to government agencies and enterprise clients. Deep expertise in Java ecosystems, microservices architecture, and modern development practices. Track record of establishing organizational infrastructure, leading technical teams, and bridging the gap between technology strategy and execution across defense, fintech, digital identity, and e-commerce sectors.
-
-  \begin{itemize}
-    \item Technologies: Java 21, Spring Boot 3, Quarkus, VueJS, ReactJs, Kubernetes, Docker, PostgreSQL, Oracle, MySQL
-    \item Cloud Platforms: Amazon Web Services, Microsoft Azure, Google Cloud Platform
-    \item Methodologies: Agile (Scrum, Kanban), DevOps, CI/CD
-    \item Tools: Git, GitHub Actions, Maven, CloudFormation, Splunk, Grafana, ChatGPT, Claude Code
-  \end{itemize}
+  Software consultant and architect with 15 years building enterprise systems across fintech, government, and defense sectors. Founder of Bytelope AB. Core expertise in Java ecosystems, distributed systems, and digital identity solutions.
+  \vspace{1.5em}
 
   \ensurespace{12}
   \begin{rSection}{Professional Experience}
 
     \ensurespace{4}
     \begin{rSubsection}{Bytelope AB}{April 2021 -- Present}{Founder \& Consultant}{Stockholm}
-      \bItem Founded and operate Bytelope AB, providing strategic software consulting and technical leadership to clients in government and enterprise sectors.
-      \bItem Specialize in architectural design, digital identity solutions, payment systems integration, and organizational process improvement.
-      \bItem Client portfolio spans government agencies and international enterprises across Sweden.
+      \bItem Own consulting company. See clients below.
     \end{rSubsection}
 
     \ensurespace{4}
-    \begin{rClientSubsection}{Agency for digital government (via Bytelope AB)}{September 2024 -- October 2025}{Software Developer - IT / Scrum Master}{Stockholm} % GPT: In Swedish: Agency for digital government=Myndigheten för digital förvaltning
-      \bItem EU Digital Identity Wallet (EUDI) - Swedish "Plånbok": Core developer for Sweden's implementation of the EU Digital Identity Wallet initiative, focusing on issuer functions and integration with EU standards.
-      \bItem Built a demo relying party using OpenID4VP, integrating with the EU reference implementation (\texttt{eudi-srv-web-verifier-endpoint-23220-4-kt}), demonstrating practical implementation for private sector adoption including companies like Kivra.
-      \bItem Developed critical wallet system components, primarily issuer functions, contributing to Sweden's digital identity infrastructure and EU-wide interoperability.
-      \bItem Digital Signature Service "Underskriftstjänsten": Core developer implementing the PAdES (PDF Advanced Electronic Signatures) standard for secure digital signatures.
-      \bItem Served as Scrum Master for the development team while maintaining software development responsibilities in a 25/75 split role on the signature service project before transitioning fully to development on EUDI.
-      \bItem \textbf{Technologies used}: Java 21, Quarkus, Vue.js 3, PostgreSQL, OAuth 2.0, JWT, OpenID4VP, S3, BankID, OpenShift, Docker, Git, Scrum, Maven, ChatGPT, Claude Code.
+    \begin{rClientSubsection}{Agency for digital government}{September 2024 -- October 2025}{Software Developer / Scrum Master}{Stockholm} % GPT: In Swedish: Agency for digital government=Myndigheten för digital förvaltning
+      \bItem EU Digital Identity Wallet (EUDI): Core developer for Sweden's implementation, focusing on issuer functions and EU standards integration.
+      \bItem Built demo relying party using OpenID4VP, integrating with EU reference implementation.
+      \bItem Digital Signature Service: Core developer implementing PAdES standard for secure digital signatures.
+      \bItem Scrum Master (25\%) while maintaining development responsibilities (75\%).
+      \techLine{Tech}{Java 21, Quarkus, Vue.js 3, PostgreSQL, OAuth 2.0, JWT, OpenID4VP, BankID}
+      \techLine{Infrastructure}{OpenShift, Docker, S3, Git, Maven}
+      \techLine{Methodology}{Scrum, OpenAI Platform, Claude Code}
+    \end{rClientSubsection}
+
+    \ensurespace{13}
+    \begin{rClientSubsection}{KINDRED PEOPLE AB}{August 2021 -- January 2024}{Software Engineer Java - Pay and Withdraw Experience}{Stockholm}
+      \bItem Developed and maintained integrations with payment providers (Adyen, Swish, Trustly, etc.) for gambling platform (Unibet, Maria Casino, 32Red).
+      \bItem Worked with KYC and AML compliance processes.
+      \bItem Served as Incident Manager for operational incidents.
+      \techLine{Tech}{React, Java 21, Spring Boot 3, WebFlux/Reactor, Solace PubSub+, Oracle, OAuth 2.0, OpenID Connect, JWT, BankID}
+      \techLine{Infrastructure}{Kubernetes, Docker, Jenkins, Splunk, Grafana, Maven, Git}
+      \techLine{Methodology}{Scrum, Kanban}
     \end{rClientSubsection}
 
     \ensurespace{10}
     \begin{rSubsection}{Banky AB}{April 2024 -- June 2024}{Chief Technology Officer}{Stockholm}
-      \bItem Established organizational and operational infrastructure for a fintech startup focused on providing loans to underserved markets.
-      \bItem Implemented formal incident management processes and introduced Confluence for team documentation, improving operational response and knowledge sharing.
-      \bItem Instituted regular employee-manager meetings and advocated for observability practices to strengthen team communication and system reliability.
-      \bItem Conducted executive review of IT staff equipment policy, addressing developer productivity and working conditions.
-      \bItem \textbf{Technologies used}: React, Java 17, Spring Boot, ActiveMQ, PostgreSQL, CloudFormation, OAuth 2.0, OpenID Connect, JWT, GitHub Actions, CloudWatch.
+      \bItem Set up operational infrastructure for a fintech startup providing loans to underserved markets.
+      \bItem Implemented incident management processes and introduced Confluence for documentation.
+      \bItem Introduced regular 1-on-1s and observability practices to improve team communication and system reliability.
+      \bItem Reviewed IT equipment policy to address developer productivity.
+      \techLine{Tech}{React, Java 17, Spring Boot, ActiveMQ, PostgreSQL, OAuth 2.0, OpenID Connect, JWT}
+      \techLine{Infrastructure}{CloudFormation, GitHub Actions, CloudWatch}
     \end{rSubsection}
-
-    \ensurespace{3}
-    \begin{rSubsection}{Bytelope AB}{April 2021 -- Present}{Founder \& Consultant}{Stockholm}
-      \bItem Founded and operate Bytelope AB, providing strategic software consulting and technical leadership to clients in government and enterprise sectors.
-      \bItem Specialize in architectural design, digital identity solutions, payment systems integration, and organizational process improvement.
-      \bItem Client portfolio spans government agencies and international enterprises across Sweden.
-    \end{rSubsection}
-
-    \ensurespace{13}
-    \begin{rClientSubsection}{KINDRED PEOPLE AB (via Bytelope AB)}{August 2021 -- January 2024}{Software Engineer Java - Pay and Withdraw Experience}{Stockholm}
-      \bItem Developed and maintained integrations with numerous payment service providers including Adyen, Brite, Earthport, Nuvei, Swish, Trustly, and Worldpay for online gambling platform serving brands including Unibet, Maria Casino, and 32Red.
-      \bItem Gained extensive knowledge of KYC (Know Your Customer) and AML (Anti-Money Laundering) processes, enhancing understanding of customer verification and compliance.
-      \bItem Served as Incident Manager, efficiently addressing operational incidents to ensure rapid service restoration and business continuity.
-      \bItem \textbf{Technologies used}: React, Java 21, Spring Boot 3, WebFlux/Reactor, Solace PubSub+, Oracle, Kubernetes, Docker, OAuth 2.0, OpenID Connect, JWT, BankID, PKCS, Jenkins, Splunk, Grafana, Linux/Unix, Maven, Git, Scrum, Kanban.
-    \end{rClientSubsection}
 
     \ensurespace{13}
     \begin{rSubsection}{SVENSK TRAVSPORT AB}{June 2020 -- March 2021}{Backend Development Lead / Scrum Master}{Stockholm}
-      \bItem Led backend API development for the Svensk Galopp website, transitioning from outsourced to in-house development.
-      \bItem Fostered a democratic decision-making environment, ensuring active team participation and collaboration.
-      \bItem Streamlined management of 100+ microservice repositories, enhancing efficiency.
-      \bItem Optimized the engagement with overseas consultants, enhancing productivity and project outcomes.
-      \bItem Successfully delivered the new gallop web API, contributing substantially to the platform's functionality and user experience.
-      \bItem \textbf{Technologies used}: Java 11, Spring Boot, Oracle Database, Redis, Kubernetes, Docker, Google Cloud Platform, Grafana, Prometheus, Maven, Git, OAuth 2.0, OpenID Connect, JWT, BankID, Scrum.
+      \bItem Led backend API development for Svensk Galopp website, transitioning from outsourced to in-house development.
+      \bItem Managed \textbf{100+ microservice repositories} and coordinated with overseas consultants.
+      \bItem Delivered the new gallop web API.
+      \techLine{Tech}{Java 11, Spring Boot, Oracle Database, Redis, OAuth 2.0, OpenID Connect, JWT, BankID}
+      \techLine{Infrastructure}{Kubernetes, Docker, Google Cloud Platform, Grafana, Prometheus, Maven, Git}
+      \techLine{Methodology}{Scrum}
     \end{rSubsection}
 
     \ensurespace{12}
     \begin{rSubsection}{Combitech AB}{August 2016 -- June 2020}{Software Consultant}{Stockholm}
-      \bItem Engaged in various client projects across multiple industries, providing expertise in Java development, system integration, and software architecture.
-      \bItem Delivered high-impact solutions for clients including Ericsson, Inera, Saab, and Pierce, demonstrating versatility across defense, telecom, healthcare, and e-commerce sectors.
+      \bItem Consulted for clients including Ericsson, Inera, Saab, and Pierce across defense, telecom, healthcare, and e-commerce.
     \end{rSubsection}
 
     \ensurespace{12}
-    \begin{rClientSubsection}{ERICSSON AB (via Combitech AB)}{March 2019 -- January 2020}{Software Developer - Guided Sales Digital Platform}{Stockholm}
-      \bItem Played a pivotal role in developing the Guided Sales Digital Platform (GSDP) for LTE \& 5G within a mid-sized team, utilizing agile methodologies.
-      \bItem Underwent comprehensive training in RAN, baseband, radio, antenna, and carrier theory, gaining deep understanding of Ericsson's hardware portfolio for LTE \& 5G solutions.
-      \bItem Led the team in implementing microservices architecture, entity-relational mapping, and other industry best practices for sustainable development.
-      \bItem \textbf{Technologies used}: Vue.js 2, Java 11, Spring Boot 2, CosmosDB, Neo4j, PostgreSQL, SAP Hybris, Docker, Kubernetes, Microsoft Azure, OAuth 2.0, MSAL, Linux/Unix, Maven, Git.
+    \begin{rClientSubsection}{ERICSSON AB}{March 2019 -- January 2020}{Software Developer - Guided Sales Digital Platform}{Stockholm}
+      \bItem Developed the Guided Sales Digital Platform (GSDP) for LTE \& 5G configuration.
+      \bItem Trained in RAN, baseband, radio, and antenna theory to understand Ericsson's hardware portfolio.
+      \bItem Implemented microservices architecture and entity-relational mapping.
+      \techLine{Tech}{Vue.js 2, Java 11, Spring Boot 2, CosmosDB, Neo4j, PostgreSQL, SAP Hybris, OAuth 2.0, MSAL}
+      \techLine{Infrastructure}{Docker, Kubernetes, Microsoft Azure, Maven, Git, Linux}
     \end{rClientSubsection}
 
     \ensurespace{12}
-    \begin{rClientSubsection}{INERA AB (via Combitech AB)}{May 2018 -- February 2019}{Data Migration Lead - Hjälpmedelstjänsten 2.0}{Stockholm}
-      \bItem Led the data migration process crucial for the launch of Hjälpmedelstjänsten 2.0.
-      \bItem Managed the intricate task of extracting and harmonizing large volumes of diverse data received intermittently from various administrative regions and their partners.
-      \bItem Provided vital decision-making support to operations managers through comprehensive data analysis, proactively identifying and addressing potential issues.
-      \bItem Collaborated extensively with software developers and testers on the team, ensuring seamless integration of data and functionality, contributing significantly to the project's success.
-      \bItem \textbf{Technologies used}: React, Java, WildFly/Thorntail, MySQL, H2, Elasticsearch, Redis, Amazon S3, Docker, OpenShift, Basefarm, Amazon Web Services (AWS), Kibana, Apache Shiro, Linux/Unix, Maven, Git, Scrum.
+    \begin{rClientSubsection}{INERA AB}{May 2018 -- February 2019}{Data Migration Lead - Hjälpmedelstjänsten 2.0}{Stockholm}
+      \bItem Led data migration for the launch of Hjälpmedelstjänsten 2.0.
+      \bItem Extracted and harmonized data from various administrative regions.
+      \bItem Supported operations managers with data analysis to identify potential issues.
+      \bItem Collaborated with developers and testers on data integration.
+      \techLine{Tech}{React, Java, WildFly/Thorntail, MySQL, H2, Elasticsearch, Redis, Apache Shiro}
+      \techLine{Infrastructure}{Amazon S3, Docker, OpenShift, AWS, Basefarm, Kibana, Maven, Git, Linux}
+      \techLine{Methodology}{Scrum}
     \end{rClientSubsection}
 
     \ensurespace{12}
-    \begin{rClientSubsection}{SAAB AB (via Combitech AB)}{February 2017 -- April 2018}{Software Developer - 9LV CMS / Scrum Master}{Järfälla}
-      \bItem Led the initial architecture, design, implementation, verification, and documentation efforts for the naval management subsystem.
-      \bItem Managed the sprint backlog and served as the team representative in Scrum of Scrums meetings, ensuring alignment with project objectives and efficient workflow.
-      \bItem Collaborated within a self-organized team of senior developers using agile methodologies to deliver high-quality software solutions.
-      \bItem Contributed significantly to all project phases, showcasing comprehensive skills and attention to detail, resulting in a robust and reliable subsystem.
-      \bItem \textbf{Technologies used}: Java 8, RxJava, ANTLR4, C++, Golang, Bash, Python, Docker, CoreOS, MongoDB (Reactive), JMS, ESB, Kerberos, LDAP, Git, Scrum.
+    \begin{rClientSubsection}{SAAB AB}{February 2017 -- April 2018}{Software Developer / Scrum Master - 9LV CMS}{Järfälla}
+      \bItem Led architecture, design, implementation, and documentation for a naval management subsystem.
+      \bItem Managed sprint backlog and represented the team in Scrum of Scrums meetings.
+      \bItem Worked in a self-organized team of senior developers using agile methodologies.
+      \techLine{Tech}{Java 8, RxJava, ANTLR4, C++, Golang, Bash, Python, MongoDB (Reactive), JMS, ESB, Kerberos, LDAP}
+      \techLine{Infrastructure}{Docker, CoreOS, Git}
+      \techLine{Methodology}{Scrum}
     \end{rClientSubsection}
 
     \ensurespace{10}
-    \begin{rClientSubsection}{PIERCE AB (via Combitech AB)}{August 2016 -- December 2016}{Software Developer - E-commerce platform}{Stockholm}
-      \bItem Enhanced APIs with Elasticsearch, resulting in faster retrieval of product information, categories, prices, and search completion.
-      \bItem Developed a comprehensive suite of load tests to identify bottlenecks and monitor response time changes over time, improving system performance.
-      \bItem Collaborated closely with stakeholders, gaining valuable insights into the consulting role and the importance of interpersonal skills.
-      \bItem \textbf{Technologies used}: Java EE/Payara, Play Framework, Docker, Docker Swarm, Microsoft SQL Server, Elasticsearch, JMS, JMeter, Linux, Maven, Git, Scrum.
+    \begin{rClientSubsection}{PIERCE AB}{August 2016 -- December 2016}{Software Developer - E-commerce platform}{Stockholm}
+      \bItem Enhanced APIs with Elasticsearch for faster product search and retrieval.
+      \bItem Developed load tests to identify bottlenecks and monitor performance.
+      \techLine{Tech}{Java EE/Payara, Play Framework, Microsoft SQL Server, Elasticsearch, JMS, JMeter}
+      \techLine{Infrastructure}{Docker, Docker Swarm, Maven, Git, Linux}
+      \techLine{Methodology}{Scrum}
     \end{rClientSubsection}
 
     \ensurespace{4}
     \begin{rSubsection}{Saab AB}{November 2012 -- August 2016}{Software Developer}{Järfälla}
-      \bItem Developed software for air, land, and sea-based defense systems across multiple platforms and technologies.
-      \bItem Promoted to Technical Design Authority for EWLib due to exceptional performance and technical leadership.
+      \bItem Developed software for air, land, and sea-based defense systems.
+      \bItem Promoted to \textbf{Technical Design Authority} for EWLib.
+      \techLine{Tech}{Java EE, PostgreSQL, LDAP}
+      \techLine{Infrastructure}{Linux, Maven, Git}
     \end{rSubsection}
 
     \ensurespace{6}
-    \begin{rClientSubsection}{GOVERNMENT AGENCY (via Saab AB)}{September 2013 -- June 2014}{Forward Deployed Engineer - Client solutions}{Stockholm} % GPT: Translate GOVERNMENT AGENCY to MYNDIGHET
-      \bItem Worked closely with a major customer to deliver tailored solutions meeting specific operational needs.
-      \bItem Demonstrated technical expertise and a strong customer-service orientation, ensuring high client satisfaction and successful project outcome.
-      \bItem \textbf{Technologies used}: Java EE, PostgreSQL, LDAP, Linux, Maven, Git.
+    \begin{rClientSubsection}{GOVERNMENT AGENCY}{September 2013 -- June 2014}{Forward Deployed Engineer}{Stockholm} % GPT: Translate GOVERNMENT AGENCY to MYNDIGHET
+      \bItem Led on-site Saab product integration, directing client staff and coordinating client-Saab communication.
     \end{rClientSubsection}
 
-    \ensurespace{3}
+    \ensurespace{6}
     \begin{rSubsection}{Academic Work AB}{January 2012 -- November 2012}{Software Consultant}{Stockholm}
-      \bItem Participated in multiple short-term projects, gaining diverse industry experience across various technology stacks.
+      \bItem Clients included Saab, Toshiba, and Vetenskapsrådet (Swedish Research Council).
     \end{rSubsection}
-
-    \ensurespace{6}
-    \begin{rClientSubsection}{SAAB AB (via Academic Work AB)}{March 2012 -- November 2012}{Software Developer}{Järfälla}
-      \bItem Contributed to defense systems development projects.
-    \end{rClientSubsection}
-
-    \ensurespace{3}
-    \begin{rClientSubsection}{TOSHIBA (via Academic Work AB)}{}{Software Developer}{Stockholm}
-      \bItem Participated in software development projects.
-    \end{rClientSubsection}
-
-    \ensurespace{3}
-    \begin{rClientSubsection}{VETENSKAPSRÅDET (via Academic Work AB)}{}{Software Developer}{Stockholm}
-      \bItem Contributed to Swedish Research Council projects.
-    \end{rClientSubsection}
 
     \ensurespace{8}
-    \begin{rSubsection}{Innventia Edge}{July 2011 -- November 2011, February 2012 -- July 2012}{Contract Software Developer}{Stockholm}
+    \begin{rSubsection}{Innventia Edge}{July 2011 -- November 2011, February 2012 -- July 2012}{Software Developer}{Stockholm}
       \bItem Extended BookCarbon carbon tracking system with new modules and features for the UK publishing industry.
       \bItem Forked BookCarbon to create ppacalculator, adapting the system for PPA (Publishers Publicity Association) publishing requirements in the UK market.
-      \bItem \textbf{Technologies used}: Java EE, Vaadin, MySQL, Git.
+      \techLine{Tech}{Java EE, Vaadin, MySQL}
+      \techLine{Infrastructure}{Git}
     \end{rSubsection}
-  \end{rSection}
-
-  \ensurespace{8}
-  \begin{rSection}{Education}
-  {\bf KTH Royal Institute of Technology}
-    \hfill {\em 2007 -- 2011 } \\
-    { B.Sc. Information \& Communication Technology (Incomplete) } \\
-    { Thesis "BookCarbon: A System for Tracking Carbon Dioxide Emissions: the Life Cycle of a Book" - Developed in collaboration with Swedish state-owned Innventia Edge and its UK subsidiary, pioneering digital carbon tracking solutions for the British publishing industry. Early work in ESG (Environmental, Social, Governance) measurement and sustainability digitalization, addressing environmental impact across international supply chains. }
-
-    {\bf International IT College of Sweden}
-    \hfill {\em 2004 -- 2007 } \\
-    { Upper Secondary School Diploma: Natural Science Program. } \\
-    { Specialization: Mathematics \& Computer Science. }
-  \end{rSection}
-
-  \ensurespace{12}
-  \begin{rSection}{Courses \& Certifications}
-  {\bf SCRUM.ORG}
-    \hfill {\em 2025 } \\
-    { \href{https://www.scrum.org/user/1618037}{PROFESSIONAL SCRUM MASTER\texttrademark{} I}. }
-
-    {\bf GUIDEWIRE SOFTWARE}
-    \hfill {\em 2024, 2-day course } \\
-    { InsuranceSuite. } % GPT: Do not translate this line
-
-    {\bf INFORMATOR AB}
-    \hfill {\em 2019, 2-day course } \\
-    { Agile Architecture Fundamentals [T1101]. } % GPT: Do not translate this line
-
-    {\bf COMBITECH GROW}
-    \hfill {\em 2019, 2-day course } \\
-    { Software Craftsmanship. } % GPT: Do not translate this line
-
-    {\bf INFORMATOR AB}
-    \hfill {\em 2017, 2-day course } \\
-    { Effective Coding Principles and Patterns: Java 8 [T1627]. } % GPT: Do not translate this line
-
-    {\bf ECLIPSESOURCE GMBH}
-    \hfill {\em 2014, 3-day course } \\
-    { Advanced Eclipse RCP. } % GPT: Do not translate this line
-
-    {\bf LEAST TECHNICAL/TACTICAL CONSULTING AND TRAINING}
-    \hfill {\em 2013, 2-day course } \\
-    { Evolution of Air Power – Tactics and connections to Technology. } % GPT: Do not translate this line
-
-    {\bf CAMBRIDGE ASSESSMENT ENGLISH}
-    \hfill {\em 2006 } \\
-    { C2 Proficiency (formerly CPE) - Grade B. }
   \end{rSection}
 
   \ensurespace{8}
   \begin{rSection}{Non-Profit Work \& Open Source}
-  {\bf ClaudeSync}
-    \hfill {\em 2024 } \\
-    { Open-source tool for synchronizing local projects with Claude AI. 600+ GitHub stars. }
+  \textbf{ClaudeSync}
+    \hfill \emph{2024} \\
+    Open-source CLI tool automating bidirectional file synchronization between local development environments and Claude.ai projects. Supports cross-platform deployment, pipeline integration, and configurable sync policies. \textbf{600+ GitHub stars}.
 
-    {\bf Technologies}: Python, Claude AI API, Git, GitHub Actions
+    {\small\color{techgray}\textbf{Tech}: Python, Claude AI API \quad \textbf{Infrastructure}: Git, GitHub Actions, PyPI}
   \end{rSection}
+
+  \newpage
+  \begin{rSection}{Education}
+  \textbf{KTH Royal Institute of Technology}
+    \hfill \emph{2007 -- 2011} \\
+    B.Sc. Information \& Communication Technology (Incomplete) \\
+    Thesis "BookCarbon: A System for Tracking Carbon Dioxide Emissions" - Developed with Innventia Edge for the British publishing industry. Early work in carbon tracking and sustainability measurement.
+
+    \textbf{International IT College of Sweden}
+    \hfill \emph{2004 -- 2007} \\
+    Upper Secondary School Diploma: Natural Science Program. \\
+    Specialization: Mathematics \& Computer Science.
+  \end{rSection}
+
+  \ensurespace{12}
+  \begin{rSection}{Courses \& Certifications}
+  \begin{tabular}{@{}p{0.48\linewidth}p{0.48\linewidth}@{}}
+    \textbf{\href{https://www.scrum.org/user/1618037}{Professional Scrum Master I}} \newline {\small\color{techgray}Scrum.org, 2025} &
+    \textbf{InsuranceSuite} \newline {\small\color{techgray}Guidewire Software, 2024} \\[0.8em]
+    \textbf{Agile Architecture Fundamentals} \newline {\small\color{techgray}Informator AB, 2019} &
+    \textbf{Software Craftsmanship} \newline {\small\color{techgray}Combitech Grow, 2019} \\[0.8em]
+    \textbf{Effective Coding: Java 8} \newline {\small\color{techgray}Informator AB, 2017} &
+    \textbf{Advanced Eclipse RCP} \newline {\small\color{techgray}EclipseSource GmbH, 2014} \\[0.8em]
+    \textbf{Evolution of Air Power} \newline {\small\color{techgray}LEAST Technical, 2013} &
+    \textbf{C2 Proficiency (CPE) - Grade B} \newline {\small\color{techgray}Cambridge Assessment, 2006} \\
+  \end{tabular}
+  \end{rSection}
+
+  \vfill
+  \begin{flushright}
+    {\scriptsize\color{gray} Last updated: December 2025}
+  \end{flushright}
 
 \end{document}
