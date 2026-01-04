@@ -6,4 +6,4 @@ out
 *.run
 *.pdf
 output/
-.claudesync
+.claudesyncfeedback/

@@ -170,47 +170,20 @@
     \emph{#3}\hfill\emph{#4}%
   }%
   \smallskip
-  \begin{list}{-}{\leftmargin=1.5em\itemsep=-0.3em}
+  \begin{list}{-}{\leftmargin=1.5em\itemsep=0em}
 }{
   \end{list}
   \vspace{0.3em}
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% rAssignment - For client assignments under a consultancy
-% Use for: Client work via Bytelope, Combitech, etc.
-% Subtle left border style (like a blockquote) to show hierarchy
+% rAssignment - DEPRECATED: Now uses same styling as rEmployer
+% Kept for backward compatibility with existing .tex files
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newenvironment{rAssignment}[4]{
-  \vspace{0.1em}
-  \noindent\hspace{0.8em}%
-  \begin{tikzpicture}
-    \node[
-      inner sep=8pt,
-      text width=\dimexpr\linewidth-4.2em\relax,
-      anchor=north west
-    ] (box) \bgroup
-      \begin{minipage}[t]{\dimexpr\linewidth-4.2em-16pt\relax}
-        % Client name and dates
-        \textbf{#1}\hfill{#2}%
-        \ifthenelse{\equal{#3}{}}{}{%
-          \\
-          \emph{#3}\hfill\emph{#4}%
-        }%
-        \smallskip
-        \begin{list}{-}{\leftmargin=1.2em\itemsep=0.15em\topsep=0.2em}
-}{
-        \end{list}
-      \end{minipage}
-    \egroup;
-    % Left border with vertical "CLIENT" text
-    \draw[assignmentborder, line width=1pt] (box.north west) -- (box.south west);
-    \node[rotate=90, anchor=south, font=\scriptsize\color{assignmenttag}]
-      at ($(box.north west)!0.5!(box.south west) - (0.4em,0)$) {CLIENT};
-    % Dashed bottom separator for consecutive clients
-    \draw[assignmentborder, line width=0.5pt, dashed]
-      ($(box.south west) + (0,-0.3em)$) -- ($(box.south east) + (0,-0.3em)$);
-  \end{tikzpicture}
+\newenvironment{rAssignment}[4]{%
+  \begin{rEmployer}{#1}{#2}{#3}{#4}%
+}{%
+  \end{rEmployer}%
 }
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -257,7 +230,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Multiple Columns
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\setlist[itemize]{noitemsep, topsep=0pt, partopsep=0pt, parsep=0pt, left=0pt, labelsep=0.5em, labelwidth=0.5em, leftmargin=1.5em}
+\setlist[itemize]{itemsep=0.1em, topsep=0pt, partopsep=0pt, parsep=0pt, left=0pt, labelsep=0.5em, labelwidth=0.5em, leftmargin=1.5em}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Ensure space before subsection
