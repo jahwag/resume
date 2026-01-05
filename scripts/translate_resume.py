@@ -2,14 +2,23 @@ import openai
 import os
 
 def translate_text(text, client):
-    response = client.chat.completions.create(
+    response = client.responses.create(
         model='gpt-5-mini',
-        messages=[
-            {'role': 'system', 'content': r'You are a translator. Translate the following LaTeX content to Swedish. Only translate the text content, do not translate commands or formatting. Remember that the character & has to be escaped as \&. Output only raw latex text, not markdown.'},
-            {'role': 'user', 'content': text}
-        ],
+        input=text,
+        instructions=r'''You are a professional Swedish translator. Translate the LaTeX content to fluent, grammatically correct Swedish.
+
+Rules:
+- Use proper Swedish vocabulary (e.g., "seniorutvecklare" not "seniordelare", "tjänstgjorde" not "änstgjorde")
+- Keep all LaTeX commands and formatting unchanged
+- Keep technology names, company names, and certifications in English
+- Escape & as \&
+- Output only raw LaTeX, no markdown''',
+        reasoning={
+            'effort': 'medium',
+            'summary': 'auto'
+        }
     )
-    return response.choices[0].message.content.strip()
+    return response.output_text.strip()
 
 def main():
     api_key = os.getenv('OPENAI_API_KEY')
